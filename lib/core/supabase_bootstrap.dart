@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseBootstrap {
@@ -5,7 +6,7 @@ class SupabaseBootstrap {
   static const String supabaseUrl = 'https://iyvygogjnfhurebfires.supabase.co';
   static const String redirectScheme = 'com.seilconnect';
   static const String redirectHost = 'callback';
-  static const String redirectUrl = '$redirectScheme://$redirectHost';
+  static const String redirectUrl = kIsWeb ? 'https://assipseil.vercel.app' : '$redirectScheme://$redirectHost';
   static const String anonKey = String.fromEnvironment(
     'SUPABASE_ANON_KEY',
     defaultValue:

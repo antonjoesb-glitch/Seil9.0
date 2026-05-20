@@ -8,7 +8,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:newapp/main.dart';
+import 'package:newapp/presentation/screens/home/home_page.dart';
+
+
 
 void main() {
   testWidgets('Conference home screen widgets render', (WidgetTester tester) async {

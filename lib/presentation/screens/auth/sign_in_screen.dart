@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../core/supabase_bootstrap.dart';
@@ -125,7 +126,7 @@ class _SignInScreenState extends State<SignInScreen> {
     try {
       await Supabase.instance.client.auth.signInWithOAuth(
         OAuthProvider.google,
-        redirectTo: SupabaseBootstrap.redirectUrl,
+        redirectTo: kIsWeb ? null : SupabaseBootstrap.redirectUrl,
       );
     } catch (error) {
       _showNotification('Google sign-in failed: $error');

@@ -16,6 +16,10 @@ import '../feedback/feedback_screen.dart';
 import '../paper_presentation/paper_presentation_screen.dart';
 import '../calendar/event_calendar_screen.dart';
 import '../auth/auth_gate.dart';
+import '../exhibitors/exhibitors_screen.dart';
+import '../floor_plan/floor_plan_screen.dart';
+import '../attendees/attendees_screen.dart';
+import '../speakers/speakers_screen.dart';
 
 class ConferenceHomePage extends StatefulWidget {
   const ConferenceHomePage({super.key, this.userLabel});
@@ -36,10 +40,7 @@ class _ConferenceHomePageState extends State<ConferenceHomePage> {
     FeatureItem('My Profile', Icons.person_outline_rounded, Color(0xFFE1007A)),
     FeatureItem('Help', Icons.help_outline_rounded, Color(0xFF12A66A)),
     FeatureItem('Event Calendar', Icons.calendar_month_rounded, Color(0xFF4A90FF)),
-    FeatureItem('Live Sessions', Icons.wifi_tethering_rounded, Color(0xFFD95BE8)),
-    FeatureItem('My Agenda', Icons.checklist_rounded, Color(0xFFE2BE00)),
     FeatureItem('Speakers', Icons.groups_2_rounded, Color(0xFF9A62FF)),
-    FeatureItem('E-Compendium', Icons.menu_book_rounded, Color(0xFFE5005A)),
     FeatureItem('Exhibitors', Icons.storefront_rounded, Color(0xFF13A67E)),
     FeatureItem('Attendees', Icons.diversity_3_rounded, Color(0xFFF28C00)),
     FeatureItem(
@@ -101,7 +102,7 @@ class _ConferenceHomePageState extends State<ConferenceHomePage> {
           onDestinationSelected: (index) => setState(() => selectedTabIndex = index),
           destinations: const [
             NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Home'),
-            NavigationDestination(icon: Icon(Icons.calendar_today_outlined), label: 'Agenda'),
+            NavigationDestination(icon: Icon(Icons.help_outline), label: 'Help'),
             NavigationDestination(icon: Icon(Icons.person_outline), label: 'Profile'),
           ],
         ),
@@ -110,7 +111,7 @@ class _ConferenceHomePageState extends State<ConferenceHomePage> {
             index: selectedTabIndex,
             children: [
               _buildHomeTab(),
-              _buildAgendaTab(),
+              const HelpScreen(),
               _buildProfileTab(),
             ],
           ),
@@ -179,9 +180,7 @@ class _ConferenceHomePageState extends State<ConferenceHomePage> {
                       MaterialPageRoute(builder: (_) => const VenueScreen()),
                     );
                   } else if (feature.title == 'Help') {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => const HelpScreen()),
-                    );
+                    setState(() => selectedTabIndex = 1);
                   } else if (feature.title == 'Feedback') {
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) => const FeedbackScreen()),
@@ -190,13 +189,27 @@ class _ConferenceHomePageState extends State<ConferenceHomePage> {
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) => const PaperPresentationScreen()),
                     );
+                  } else if (feature.title == 'Exhibitors') {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const ExhibitorsScreen()),
+                    );
+                  } else if (feature.title == 'Floor Plan') {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const FloorPlanScreen()),
+                    );
                   } else if (feature.title == 'My Profile') {
                     setState(() => selectedTabIndex = 2);
-                  } else if (feature.title == 'My Agenda') {
-                    setState(() => selectedTabIndex = 1);
                   } else if (feature.title == 'Event Calendar') {
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) => const EventCalendarScreen()),
+                    );
+                  } else if (feature.title == 'Attendees') {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const AttendeesScreen()),
+                    );
+                  } else if (feature.title == 'Speakers') {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const SpeakersScreen()),
                     );
                   }
                 },
@@ -244,7 +257,7 @@ class _ConferenceHomePageState extends State<ConferenceHomePage> {
                     child: Row(
                       children: [
                         IconButton(
-                          onPressed: () => setState(() => selectedTabIndex = 0),
+                          onPressed: () => Navigator.of(context).pop(),
                           icon: const Icon(Icons.arrow_back_rounded, color: Color(0xFF1E293B)),
                           style: IconButton.styleFrom(
                             backgroundColor: Colors.white,

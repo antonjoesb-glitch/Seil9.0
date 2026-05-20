@@ -28,7 +28,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.seilconnect"
+        applicationId = "com.SeilConnect"
         minSdk = flutter.minSdkVersion
         targetSdk = 36
         versionCode = flutter.versionCode

@@ -29,18 +29,10 @@ class AboutEventScreen extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Circular logo mock
-              CustomPaint(
-                size: const Size(64, 64),
-                painter: LogoRingPainter(),
+              Image.asset(
+                'assets/seil_logo.png',
+                height: 64,
               ),
-              const SizedBox(width: 8),
-              const Text('SEIL',
-                  style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.w900,
-                      color: Color(0xFF1B3B4B),
-                      letterSpacing: -1.0)),
               const SizedBox(width: 20),
               Container(width: 2, height: 70, color: const Color(0xFFE2E8F0)),
               const SizedBox(width: 20),
@@ -239,7 +231,7 @@ class AboutEventScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('TENTATIVE SCHEDULE',
+        const Text('',
             style: TextStyle(
                 color: Color(0xFF718E3E),
                 fontWeight: FontWeight.w800,
